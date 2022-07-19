@@ -1,0 +1,20 @@
+{
+  "name": "hiservice_backend_yasein",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Art-Code-js2/HiService_Backend_Yasein.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Art-Code-js2/HiService_Backend_Yasein/issues"
+  },
+  "homepage": "https://github.com/Art-Code-js2/HiService_Backend_Yasein#readme"
+}
