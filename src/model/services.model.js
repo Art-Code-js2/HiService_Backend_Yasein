@@ -30,7 +30,6 @@ const servicesModels = (sequelize, DataTypes) =>
     phoneNumber: {
       type: DataTypes.STRING,
       allowNull: false,
-      // We can add unique Number
     },
     userID: {
       type: DataTypes.INTEGER,

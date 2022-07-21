@@ -2,7 +2,7 @@
 
 const feedbackModels = (sequelize, DataTypes) =>
   sequelize.define("feedback", {
-    userName: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
       required: true,

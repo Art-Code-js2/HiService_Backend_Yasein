@@ -6,11 +6,7 @@ const logger = require("../middleware/logger");
 signinRouters.use(logger);
 
 signinRouters.post("/signin", basicAuth, (req, res) => {
-  const user = {
-    user: req.user,
-    token: req.user.token,
-  };
-  res.status(200).json(user);
+  res.status(200).json(req.user);
 });
 
 module.exports = signinRouters;

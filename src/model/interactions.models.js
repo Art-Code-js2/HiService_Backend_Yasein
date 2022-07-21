@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const interactionsModel = (sequelize, DataTypes) =>
   sequelize.define("interactions", {
@@ -15,7 +15,7 @@ const interactionsModel = (sequelize, DataTypes) =>
       type: DataTypes.STRING,
       required: false,
     },
-    userID: {
+    username: {
       type: DataTypes.INTEGER,
     },
   });
