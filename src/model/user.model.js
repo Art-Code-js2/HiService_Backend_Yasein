@@ -40,11 +40,19 @@ const UserModel = (sequelize, DataTypes) => {
       required: true,
       allowNull: false,
     },
-    role: { type: DataTypes.ENUM("user", "writer", "editor", "admin"), defaultValue: "user" },
+    role: {
+      type: DataTypes.ENUM("admin", "writer", "editor", "user"),
+      defaultValue: "user",
+    },
     token: {
       type: DataTypes.VIRTUAL,
       get() {
-        return jwt.sign({ username: this.username }, SECRET);
+        return jwt.sign(
+          {
+            username: this.username,
+          },
+          process.env.SECRET
+        );
       },
     },
     actions: {
@@ -66,27 +74,26 @@ const UserModel = (sequelize, DataTypes) => {
     return hashedPass;
   };
 
-  // Basic
+  // basic
   model.authenticateBasic = async function (username, password) {
-    const user = await this.findOne({ where: { username: username } });
+    const user = await model.findOne({ where: { username: username } });
+
     const valid = await bcrypt.compare(password, user.password);
 
-    if (!valid) {
-      console.log("hi");
-      return user;
-    }
+    if (valid) return user;
+
     throw new Error("Invalid User");
   };
 
   // Bearer
-  model.authenticateBearer = async function (token) {
+  model.authenticateToken = async function (token) {
     try {
-      const parsedToken = jwt.verify(token, SECRET);
-      const user = this.findOne({ where: { username: parsedToken.username } });
+      const parsedToken = jwt.verify(token, process.env.SECRET);
+      // let y = parsedToken.username;
+      const user = await this.findOne({ where: { username: parsedToken.username } });
+      
+      if (user) return user;
 
-      if (user) {
-        return user;
-      }
       throw new Error("User Not Found");
     } catch (e) {
       throw new Error(e.message);

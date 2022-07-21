@@ -1,20 +1,15 @@
-'use strict';
+"use strict";
 
 module.exports = (capability) => {
-
   return (req, res, next) => {
-
-    try {     
+    try {
       if (req.user.actions.includes(capability)) {
         next();
-      }
-      else {
-        next('Access Denied');
+      } else {
+        next("Access Denied");
       }
     } catch (e) {
-      next('Invalid Login');
+      next("Invalid acl Login");
     }
-
-  }
-
-}
+  };
+};

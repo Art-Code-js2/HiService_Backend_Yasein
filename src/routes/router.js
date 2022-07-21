@@ -29,14 +29,12 @@ async function handleGetAll(req, res) {
 }
 
 async function handleGetOne(req, res) {
-  const id = req.params.id;
-  let theRecord = await req.model.get(id);
+  let theRecord = await req.model.get(req.params.id);
   res.status(200).json(theRecord);
 }
 
 async function handleCreate(req, res) {
-  let obj = req.body;
-  let newRecord = await req.model.create(obj);
+  let newRecord = await req.model.create(req.body);
   res.status(201).json(newRecord);
 }
 

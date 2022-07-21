@@ -1,7 +1,7 @@
 "use strict";
 const contactModel = (sequelize, DataTypes) =>
   sequelize.define("contact", {
-    userName: {
+    username: {
       type: DataTypes.STRING,
       required: true,
     },
@@ -16,6 +16,10 @@ const contactModel = (sequelize, DataTypes) =>
     message: {
       type: DataTypes.STRING,
       required: true,
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
   });
 
